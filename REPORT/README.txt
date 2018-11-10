@@ -1,0 +1,1 @@
+Folder that concerns to REPORT files and assets.

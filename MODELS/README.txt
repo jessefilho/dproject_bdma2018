@@ -1,0 +1,1 @@
+Folder that concerns to MODELS files and assets.
