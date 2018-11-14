@@ -1,0 +1,67 @@
+/usr/lib/systemd/system
+
+/usr/pgsql-9.5/bin   -- setting
+
+/var/lib/pgsql/9.5/data  -- PGDATA
+
+$PGDATA=/var/lib/pgsql/9.5/data
+
+$ cd ~
+$ vim .profile
+PATH=$PATH:/usr/pgsql-9.5/bin
+export PATH
+$ . ~/.profile
+
+
+$ systemctl status postgresql-9.5.service
+
+/bin/rm -r /var/lib/pgsql/9.5/data/*
+# systemctl enable postgresql-9.5.service
+# systemctl start postgresql-9.5.service
+
+
+
+/bin/rm -r /var/lib/pgsql/9.5/data/*
+
+-----
+https://hub.docker.com/r/arey/musicbrainz-database/
+https://docs.docker.com/engine/reference/commandline/system_df/#extended-description
+https://container-solutions.com/understanding-volumes-docker/
+https://docs.docker.com/config/containers/container-networking/#published-ports
+
+
+[
+    {
+        "CreatedAt": "2018-11-14T00:16:57+01:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/e81cd1dea778f7e5e2162826f3a109acaefa3c77f919292cb2aa94d76e5c5c85/_data",
+        "Name": "e81cd1dea778f7e5e2162826f3a109acaefa3c77f919292cb2aa94d76e5c5c85",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+
+$ sudo iptables -A FORWARD -i docker0 -o enp0s3 -j ACCEPT
+$ sudo iptables -A FORWARD -i enp0s3 -o docker0 -j ACCEPT
+
+
+docker run -it -d  --name dw_postgres -p 1433:5432 -v /var/lib/docker/volumes -e POSTGRES_USER=musicbrainz -e POSTGRES_PASSWORD=musicbrainz arey/musicbrainz-database
+
+docker run -it --link dw_postgres:postgresql -e POSTGRES_USER=musicbrainz -e POSTGRES_PASSWORD=musicbrainz --rm arey/musicbrainz-database /create-database.sh
+
+docker run -it --link musicbrainz-database:postgresql --rm arey/musicbrainz-database sh -c 'exec psql -h postgresql -d musicbrainz -U musicbrainz -a -c "SELECT COUNT(*) FROM artist"'
+
+docker run -it --link dw_postgres:postgresql --rm arey/musicbrainz-database sh -c 'exec psql -h postgresql -d musicbrainz -U musicbrainz -a -c "SELECT COUNT(*) FROM artist"'
+
+docker exec -it dw_postgres bash
+
+
+docker exec -it postgres bash
+
+10.195.25.10
+54587
+
+ALTER USER postgres PASSWORD '123';
+
+
