@@ -20,6 +20,17 @@ As part of our master degree ‘s program , we choose to work on the design and 
 Our objective is to analyze the current music streaming industry and more precisely the songs and the artists' popularity. We decided to bring the subject closer to us by focusing on French artists.
 
 # How to running this project?
+
+To have access to the currently database, I must be student of Tours University, otherwise you can download our data schema without data.
+
+If you are student of Tours University, I should have access to University OpenVPN:
+
+Make sure that you are properly connected at OpenVPN networking, then you will have all access to Postgres DB(via PGADMIN) and [Pentaho BI SERVER](http://10.195.25.10:54585/pentaho/Login).
+
+If it doesn't works, means that the VM was murdered by a nefarious adm. =( 
+In this case, if have questions, you can contact me at jessefilhojfnf@gmail.com
+   
+
  more detail in the future.
 # How to clone this git repository?
  ```sh
