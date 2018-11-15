@@ -3,6 +3,7 @@ dproject_bdma is a open-source Decisional Project for Data Warehouse discipline 
 
   - [Linux CentOS with Virtual Box](https://www.centos.org/);
   - [PostgreSQL 9.5](https://www.postgresql.org/ftp/source/v9.5.15/);
+  - [PgAdmin III or 4](https://www.pgadmin.org/)
   - [Pentaho Community Edition](https://community.hitachivantara.com/docs/DOC-1009931-downloads);
   - [Talend Open Studio](https://www.talend.com/products/talend-open-studio/);
   - [SQL Power Architect](http://www.bestofbi.com/page/architect_download_os);
