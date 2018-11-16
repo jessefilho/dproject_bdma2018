@@ -15,9 +15,9 @@
    <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
    <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
   </data-source>
-  <data-source id="DS0">
-   <property key="Logical" value="datamarts" />
+  <data-source id="DS2">
    <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="PlayPen Database" />
    <property key="JDBC URL" value="jdbc:postgresql://10.195.25.10:54587/datamarts" />
    <property key="UID" value="postgres" />
    <property key="PWD" value="123" />
@@ -29,7 +29,7 @@
   </data-source>
  </project-data-sources>
  <source-databases>
-  <database id="DB0" populated="true" UUID="a73dadc9-3e02-4199-a2d9-bb94abba83fb" dbcs-ref="DS0" name="datamarts" physicalName="datamart_popularitySong" >
+  <database id="DB0" populated="true" UUID="a73dadc9-3e02-4199-a2d9-bb94abba83fb" dbcs-ref="DS2" name="PlayPen Database" physicalName="datamart_popularitySong" >
    <catalog id="CAT1" populated="false" UUID="2da7ca2d-f96f-4617-a4c1-af2b3a0ffd4c" name="datamart_popularitySong" nativeTerm="database" physicalName="datamart_popularitySong" >
    </catalog>
    <relationships>

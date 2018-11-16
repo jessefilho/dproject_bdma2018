@@ -4,7 +4,16 @@
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="PlayPen Database" />
+   <property key="Logical" value="(Target Database)" />
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="JDBC URL" value="jdbc:postgresql://10.195.25.10:54587/datamarts" />
+   <property key="UID" value="postgres" />
+   <property key="PWD" value="123" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
   </data-source>
   <data-source id="DS2">
    <property key="Connection Type" value="PostgreSQL" />
@@ -20,7 +29,7 @@
   </data-source>
  </project-data-sources>
  <source-databases>
-  <database id="DB0" populated="true" UUID="9de028fd-b43a-47c0-bdab-acd395169baf" dbcs-ref="DS2" name="PlayPen Database" physicalName="datamart_song" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: FATAL: database &quot;datamart_song&quot; does not exist" >
+  <database id="DB0" populated="true" UUID="9de028fd-b43a-47c0-bdab-acd395169baf" dbcs-ref="DS2" name="PlayPen Database" physicalName="datamart_song" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: FATAL: database &quot;datamart_song&quot; does not exist" >
    <catalog id="CAT1" populated="true" UUID="3a1f48cd-00be-4850-be0e-92e35d3ebf2d" name="datamart_song" nativeTerm="database" physicalName="datamart_song" >
    </catalog>
    <relationships>
@@ -355,7 +364,7 @@
    <relationship id="REL101" populated="true" UUID="868f150e-66ea-4245-bfdf-a89627aa5700" deferrability="7" deleteRule="3" fk-table-ref="TAB79" fkCardinality="7" identifying="true" name="dim_artistgroup_bridge_member_fk" physicalName="dim_artistgroup_bridge_member_fk" pk-table-ref="TAB41" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP102" populated="true" UUID="ae397632-57ed-4c2b-86aa-650ed1f622ac" fk-column-ref="COL80" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL42" />
    </relationship>
-   <relationship id="REL103" populated="true" UUID="507ec1e9-00fe-49c6-941e-8a497a229448" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="fct_song_dim_release-monthYear-song_fk" physicalName="fct_song_dim_release-monthYear-song_fk" pk-table-ref="TAB50" pkCardinality="2" updateRule="3" >
+   <relationship id="REL103" populated="true" UUID="507ec1e9-00fe-49c6-941e-8a497a229448" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="fct_song_dim_release-monthYear-song_fk" physicalName="fct_song_dim_release_monthyear_song_fk" pk-table-ref="TAB50" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP104" populated="true" UUID="5b3c35a0-6fd4-43bd-bad3-2c77ba3a338c" fk-column-ref="COL4" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL51" />
    </relationship>
    <relationship id="REL105" populated="true" UUID="30fbe582-ac62-4389-9c8f-9c1d61e84b78" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="dim_releaselocationsong_fct_song_fk" physicalName="dim_releaselocationsong_fct_song_fk" pk-table-ref="TAB57" pkCardinality="2" updateRule="3" >
@@ -372,7 +381,7 @@
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="datamart_song"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="datamart_song"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">

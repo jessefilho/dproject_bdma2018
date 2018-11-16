@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # In[66]:
-
+#python -m pip install 
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -11,7 +11,7 @@ import time
 from openpyxl import load_workbook
 import os.path 
 import psycopg2
-import pgdb
+#import pgdb
 
 hostname = '10.195.25.10'
 username = 'postgres'
@@ -43,7 +43,7 @@ myConnection.close()
 
 
 #Verify if File in certain date already exists
-filename='D:\ProjetDecisonnel\Artistsout'+today_date+'.xlsx'
+filename='F:\Documents\dproject_bdma2018\DATA'+today_date+'.xlsx'
 if os.path.exists(filename):
     print(filename+' '+'exists')
 else: 
@@ -60,8 +60,8 @@ else:
             track_results = sp.search(q=name, type='artist',market='FR', limit=50)
            # print (track_results)
             
-            if  not track_results[t]['items'] :
-                print(track_results[t]['items'])
+            if  not track_results[0]['items'] :
+                #print(track_results[t]['items'])
                 print('artiste non trouvé')
         
             else : 
@@ -92,17 +92,3 @@ else:
                 writer = pd.ExcelWriter(filename, engine='xlsxwriter')
                 df_tracks.to_excel(writer,encoding='utf8')
                 writer.save()
-        
-
-
-# In[20]:
-
-
-
-
-
-# In[ ]:
-
-
-
-

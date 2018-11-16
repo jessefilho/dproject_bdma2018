@@ -4,7 +4,16 @@
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="PlayPen Database" />
+   <property key="Logical" value="datamarts" />
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="JDBC URL" value="jdbc:postgresql://10.195.25.10:54587/datamarts" />
+   <property key="UID" value="postgres" />
+   <property key="PWD" value="123" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
   </data-source>
   <data-source id="DS2">
    <property key="Connection Type" value="PostgreSQL" />
@@ -301,7 +310,7 @@
    </folder>
   </table>
   <relationships>
-   <relationship id="REL82" populated="true" UUID="5364d38e-5ce1-41e2-87cb-45b671a2f0e2" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="dim_song_fct_popularitySong_fk" physicalName="dim_song_fct_popularitySong_fk" pk-table-ref="TAB14" pkCardinality="2" updateRule="3" >
+   <relationship id="REL82" populated="true" UUID="5364d38e-5ce1-41e2-87cb-45b671a2f0e2" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="dim_song_fct_popularitySong_fk" physicalName="dim_song_fct_popularitysong_fk" pk-table-ref="TAB14" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP83" populated="true" UUID="4932f9a4-2c00-4d1d-bc40-a834343884d7" fk-column-ref="COL4" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL15" />
    </relationship>
    <relationship id="REL84" populated="true" UUID="fb694c71-5aaa-49e2-a8c9-ee86d34d9a95" deferrability="7" deleteRule="3" fk-table-ref="TAB68" fkCardinality="7" identifying="true" name="dim_song_bridge_member_fk" physicalName="dim_song_bridge_member_fk" pk-table-ref="TAB14" pkCardinality="2" updateRule="3" >
@@ -310,10 +319,10 @@
    <relationship id="REL86" populated="true" UUID="79f83aa7-fc46-471d-9332-49da962474a8" deferrability="7" deleteRule="3" fk-table-ref="TAB75" fkCardinality="7" identifying="true" name="dim_song_bridge_labels_fk" physicalName="dim_song_bridge_labels_fk" pk-table-ref="TAB14" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP87" populated="true" UUID="ddf14f84-6dbf-4be4-b9fc-4478aecadd3e" fk-column-ref="COL77" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL15" />
    </relationship>
-   <relationship id="REL88" populated="true" UUID="ffbab65b-7ab2-45f6-b686-028938db81b4" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="dim_genres_fct_popularitySong_fk" physicalName="dim_genres_fct_popularitySong_fk" pk-table-ref="TAB40" pkCardinality="2" updateRule="3" >
+   <relationship id="REL88" populated="true" UUID="ffbab65b-7ab2-45f6-b686-028938db81b4" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="dim_genres_fct_popularitySong_fk" physicalName="dim_genres_fct_popularitysong_fk" pk-table-ref="TAB40" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP89" populated="true" UUID="21c5ab62-8927-442e-a0cf-fa67311f1ddf" fk-column-ref="COL6" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL41" />
    </relationship>
-   <relationship id="REL90" populated="true" UUID="2db64b1b-1cd4-4076-b2dd-a8d546cface6" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="dim_cover_fct_popularitySong_fk" physicalName="dim_cover_fct_popularitySong_fk" pk-table-ref="TAB45" pkCardinality="2" updateRule="3" >
+   <relationship id="REL90" populated="true" UUID="2db64b1b-1cd4-4076-b2dd-a8d546cface6" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="dim_cover_fct_popularitySong_fk" physicalName="dim_cover_fct_popularitysong_fk" pk-table-ref="TAB45" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP91" populated="true" UUID="7ca4a5cd-2a1a-4b38-846d-d8395eb228da" fk-column-ref="COL5" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL46" />
    </relationship>
    <relationship id="REL92" populated="true" UUID="66f8118d-035b-4d04-b0fb-2e3980fd3be1" deferrability="7" deleteRule="3" fk-table-ref="TAB68" fkCardinality="7" identifying="true" name="dim_member_bridge_member_fk" physicalName="dim_member_bridge_member_fk" pk-table-ref="TAB50" pkCardinality="2" updateRule="3" >
@@ -322,12 +331,12 @@
    <relationship id="REL94" populated="true" UUID="c320b28c-3cd5-40b2-8923-e5d33c29223e" deferrability="7" deleteRule="3" fk-table-ref="TAB75" fkCardinality="7" identifying="true" name="dim_labels_bridge_labels_fk" physicalName="dim_labels_bridge_labels_fk" pk-table-ref="TAB56" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP95" populated="true" UUID="df5dffc5-189e-4b3a-85e5-abc4185a78a0" fk-column-ref="COL76" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL57" />
    </relationship>
-   <relationship id="REL96" populated="true" UUID="e17a4b7b-67ac-423e-bb7c-983a418d6d23" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="dim_popularitydate_fct_popularitySong_fk" physicalName="dim_popularitydate_fct_popularitySong_fk" pk-table-ref="TAB61" pkCardinality="2" updateRule="3" >
+   <relationship id="REL96" populated="true" UUID="e17a4b7b-67ac-423e-bb7c-983a418d6d23" deferrability="7" deleteRule="3" fk-table-ref="TAB3" fkCardinality="7" identifying="true" name="dim_popularitydate_fct_popularitySong_fk" physicalName="dim_popularitydate_fct_popularitysong_fk" pk-table-ref="TAB61" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP97" populated="true" UUID="88dcd0e9-73ca-4a9c-b141-c35995d08b4a" fk-column-ref="COL7" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL62" />
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="datamart_popularitySong"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="datamart_popularitySong"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">

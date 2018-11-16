@@ -45,8 +45,18 @@ https://docs.docker.com/config/containers/container-networking/#published-ports
 $ sudo iptables -A FORWARD -i docker0 -o enp0s3 -j ACCEPT
 $ sudo iptables -A FORWARD -i enp0s3 -o docker0 -j ACCEPT
 
+docker volume create --driver local --opt type=none --opt device=/home/docker/volumes --opt o=bind test_volume
 
-docker run -it -d  --name dw_postgres -p 1433:5432 -v /var/lib/docker/volumes -e POSTGRES_USER=musicbrainz -e POSTGRES_PASSWORD=musicbrainz arey/musicbrainz-database
+-v test_volume2:/:/home/docker/volumes
+
+-v /path/to/storage/location:/var/lib/postgresql
+
+docker run -it -v dw_volume:/home/docker/volumes:/var/lib/postgresql imagename
+
+docker run -d -it --name devtest --mount type=bind,source=/home/docker/volumes,target=/var/lib/postgresql
+
+1 step  ############################
+docker run -it -d  --name dw_postgres -p 1433:5432 --mount type=bind,source=/home/docker/volumes,target=/var/lib/postgresql -e POSTGRES_USER=musicbrainz -e POSTGRES_PASSWORD=musicbrainz arey/musicbrainz-database
 
 docker run -it --link dw_postgres:postgresql -e POSTGRES_USER=musicbrainz -e POSTGRES_PASSWORD=musicbrainz --rm arey/musicbrainz-database /create-database.sh
 
@@ -54,7 +64,15 @@ docker run -it --link musicbrainz-database:postgresql --rm arey/musicbrainz-data
 
 docker run -it --link dw_postgres:postgresql --rm arey/musicbrainz-database sh -c 'exec psql -h postgresql -d musicbrainz -U musicbrainz -a -c "SELECT COUNT(*) FROM artist"'
 
+* artist - 1420023 vm 16/11/2018
+* artist - 99589 docker documentation
+
+2841708
+1420023
+
+
 docker exec -it dw_postgres bash
+docker system df -v
 
 
 docker exec -it postgres bash
@@ -64,4 +82,13 @@ docker exec -it postgres bash
 
 ALTER USER postgres PASSWORD '123';
 
+https://unix.stackexchange.com/questions/452368/change-docker-root-dir-on-red-hat-linux
 
+
+/usr/bin/dockerd -H daemon -g /home/docker -H unix://
+/usr/bin/dockerd -H daemon -g other_args="-g /home/docker"
+https://sanenthusiast.com/change-default-image-container-location-docker/
+
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd --graph=/home/docker
