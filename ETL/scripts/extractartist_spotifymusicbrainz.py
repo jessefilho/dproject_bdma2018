@@ -20,7 +20,10 @@ cid ="a154f4842df643a99f9057fb741c86e0"
 secret = "543080531fce4f30be3da2c36782ace1"
 
 today_date=(time.strftime("%d_%m_%Y  %M_%S"))
-#date=(time.strftime("%d/%m/%Y"))
+date=(time.strftime("%d/%m/%Y"))
+date_monthYear = (time.strftime("%m%Y"))
+date_year = (time.strftime("%Y"))
+
 filepath = 'F:\Documents\dproject_bdma2018\DATA'+today_date+'.xlsx'
 
 
@@ -53,7 +56,8 @@ query = """SELECT distinct artist_table.name_group,
                     where musicbrainz.area_type.id = 1) as area_table
               ON artist_table.area = area_table.id_area
 
-              WHERE artist_table.area is not null AND artist_table.begin_area is not null AND artist_table.area != artist_table.begin_area"""
+              WHERE artist_table.area is not null AND artist_table.begin_area is not null AND artist_table.area != artist_table.begin_area 
+              limit 10"""
 
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
@@ -109,44 +113,92 @@ else:
               if  not track_results[t]['items']:
                   #print(track_results[t]['items'])
                   print('artiste non trouvé')
-              else : 
-                  print (track_results[t]['items'][0]['name'])                    
-                  artist_name_group.append(track_results[t]['items'][0]['name'])
-                  artist_id_msbz.append(id_msbz)
-                  artist_id_member_position.append(id_member_position)
-                  artist_id_type_group.append(id_type_group)
-                  artist_id_country_origin.append(id_country_origin)
-                  artist_country_origin.append(country_origin)
-                  artist_id_city_origin.append(id_city_origin)
-                  artist_city_origin.append(city_origin)
-                  artist_gender_sex.append(gender_sex)
-                  #spotify attributes
-                  artist_popularity.append(track_results[t]['items'][0]['popularity'])
-                  artist_id_spotify.append(track_results[t]['items'][0]['id'])
-                  artist_followers.append(track_results[t]['items'][0]['followers']['total'])
-                  artist_genre.append(track_results[t]['items'][0]['genres'])
+              else :
+                  try:
+                    print ('into try')
+                    stageConnection = psycopg2.connect( host=hostname, user=username, password=password, dbname='stages',port=port )
+                    cur = stageConnection.cursor()
+
+                    print (track_results[t]['items'][0]['name']+", FROM ---->"+country_origin)
+
+                    cur.execute("""INSERT INTO public.stage_artist(id_msbz, 
+                                                                  name_group, 
+                                                                  id_member_position, 
+                                                                  id_type_group, 
+                                                                  id_country_origin, 
+                                                                  country_origin, 
+                                                                  id_city_origin, 
+                                                                  city_origin, 
+                                                                  gender_sex, 
+                                                                  popularity, 
+                                                                  id_spotify, 
+                                                                  followers, 
+                                                                  genre,date_full,date_monthYear,date_year) 
+                                                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""", (id_msbz,
+                                                      track_results[t]['items'][0]['name'],
+                                                      id_member_position,
+                                                      id_type_group,
+                                                      id_country_origin,
+                                                      country_origin,
+                                                      id_city_origin, 
+                                                      city_origin,
+                                                      gender_sex,
+                                                      track_results[t]['items'][0]['popularity'],
+                                                      track_results[t]['items'][0]['id'],
+                                                      track_results[t]['items'][0]['followers']['total'],
+                                                      track_results[t]['items'][0]['genres'],
+                                                      date,
+                                                      date_monthYear,
+                                                      date_year))
+                    
+                    cur.close()
+                    stageConnection.commit()
+                    stageConnection.close()
+
+                    print ('finish -> connection')
+                  except :                     
+                  #   print e
+                      print ('##IGNORED##')                    
+                  # artist_name_group.append(track_results[t]['items'][0]['name'])
+                  # artist_id_msbz.append(id_msbz)
+                  # artist_id_member_position.append(id_member_position)
+                  # artist_id_type_group.append(id_type_group)
+                  # artist_id_country_origin.append(id_country_origin)
+                  # artist_country_origin.append(country_origin)
+                  # artist_id_city_origin.append(id_city_origin)
+                  # artist_city_origin.append(city_origin)
+                  # artist_gender_sex.append(gender_sex)
+                  # #spotify attributes
+                  # artist_popularity.append(track_results[t]['items'][0]['popularity'])
+                  # artist_id_spotify.append(track_results[t]['items'][0]['id'])
+                  # artist_followers.append(track_results[t]['items'][0]['followers']['total'])
+                  # artist_genre.append(track_results[t]['items'][0]['genres'])
                                  
                   
                   print ('finish ->')
-              print ('finish for exited')
-              df_tracks = pd.DataFrame({'artist_name_group':artist_name_group,
-                                        'artist_id_msbz':artist_id_msbz,
-                                        'artist_id_member_position':artist_id_member_position,
-                                        'artist_id_type_group':artist_id_type_group,
-                                        'artist_id_country_origin':artist_id_country_origin,
-                                        'artist_country_origin':artist_country_origin,
-                                        'artist_id_city_origin':artist_id_city_origin,
-                                        'artist_city_origin':artist_city_origin,
-                                        'artist_gender_sex':artist_gender_sex,
-                                        'artist_popularity':artist_popularity,
-                                        'artist_id_spotify':artist_id_spotify,
-                                        'artist_followers':artist_followers,
-                                        'artist_genre':artist_genre
-                                       })
+
+             
+                
 
 
-              #Create xlsx File 
-              try:
+
+              # df_tracks = pd.DataFrame({'artist_name_group':artist_name_group,
+              #                           'artist_id_msbz':artist_id_msbz,
+              #                           'artist_id_member_position':artist_id_member_position,
+              #                           'artist_id_type_group':artist_id_type_group,
+              #                           'artist_id_country_origin':artist_id_country_origin,
+              #                           'artist_country_origin':artist_country_origin,
+              #                           'artist_id_city_origin':artist_id_city_origin,
+              #                           'artist_city_origin':artist_city_origin,
+              #                           'artist_gender_sex':artist_gender_sex,
+              #                           'artist_popularity':artist_popularity,
+              #                           'artist_id_spotify':artist_id_spotify,
+              #                           'artist_followers':artist_followers,
+              #                           'artist_genre':artist_genre
+              #                          })
+
+
+              # try:
                 # myConnection = psycopg2.connect( host=hostname, user=username, password=password, dbname='stages',port=port )
                 # cur = conn.cursor()
                 # cur.execute("INSERT INTO public.stage_artist (column1, column2, column3 .....)",)
@@ -154,10 +206,9 @@ else:
                 # myConnection.close()
 
 
-                writer = pd.ExcelWriter(filename, engine='xlsxwriter')
-                df_tracks.to_excel(writer,encoding='utf8')
-                writer.save()
-                print "Inserted!"
-              except:
-                print " ###IGNORED#### UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3!"
+                # writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+                # df_tracks.to_excel(writer,encoding='utf8')
+                # writer.save()
+                # print "Inserted!"
+              
 
