@@ -27,7 +27,7 @@ date_year = (time.strftime("%Y"))
 filepath = 'F:\Documents\dproject_bdma2018\DATA'+today_date+'.xlsx'
 
 
-    
+checkifexist ="""SELECT id_msbz FROM public.stage_artist WHERE id_msbz ="""     
     
 
 
@@ -57,7 +57,7 @@ query = """SELECT distinct artist_table.name_group,
               ON artist_table.area = area_table.id_area
 
               WHERE artist_table.area is not null AND artist_table.begin_area is not null AND artist_table.area != artist_table.begin_area 
-              limit 10"""
+              """
 
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
@@ -70,8 +70,28 @@ def doQuery( conn ) :
     cur.execute(query)
     return cur.fetchall()
  
+def existsOnStageQuery( check_id ) :
+    connec = psycopg2.connect( host=hostname, user=username, password=password, dbname='stages',port=port )
+    cursor = connec.cursor()
+    cursor.execute(checkifexist+str(check_id))
+    print (cursor.rowcount)
+    if cursor.rowcount == 0:
+      
+      cursor.close()
+      connec.close()
+      return False
+    else:
+      cursor.close()
+      connec.close()
+      return True
+
     
+    
+    
+      
+       
 artist_musicbrainz =[]
+
 myConnection = psycopg2.connect( host=hostname, user=username, password=password, dbname=database,port=port )
 artist_musicbrainz = doQuery( myConnection )
 myConnection.close()
@@ -113,9 +133,11 @@ else:
               if  not track_results[t]['items']:
                   #print(track_results[t]['items'])
                   print('artiste non trouvé')
+              elif (existsOnStageQuery(id_msbz)):
+                  print "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -----------------> I am already here. Rock n' Roll .... "
               else :
                   try:
-                    print ('into try')
+                    print ('Into try')
                     stageConnection = psycopg2.connect( host=hostname, user=username, password=password, dbname='stages',port=port )
                     cur = stageConnection.cursor()
 
@@ -159,56 +181,6 @@ else:
                   except :                     
                   #   print e
                       print ('##IGNORED##')                    
-                  # artist_name_group.append(track_results[t]['items'][0]['name'])
-                  # artist_id_msbz.append(id_msbz)
-                  # artist_id_member_position.append(id_member_position)
-                  # artist_id_type_group.append(id_type_group)
-                  # artist_id_country_origin.append(id_country_origin)
-                  # artist_country_origin.append(country_origin)
-                  # artist_id_city_origin.append(id_city_origin)
-                  # artist_city_origin.append(city_origin)
-                  # artist_gender_sex.append(gender_sex)
-                  # #spotify attributes
-                  # artist_popularity.append(track_results[t]['items'][0]['popularity'])
-                  # artist_id_spotify.append(track_results[t]['items'][0]['id'])
-                  # artist_followers.append(track_results[t]['items'][0]['followers']['total'])
-                  # artist_genre.append(track_results[t]['items'][0]['genres'])
-                                 
                   
-                  print ('finish ->')
-
-             
-                
-
-
-
-              # df_tracks = pd.DataFrame({'artist_name_group':artist_name_group,
-              #                           'artist_id_msbz':artist_id_msbz,
-              #                           'artist_id_member_position':artist_id_member_position,
-              #                           'artist_id_type_group':artist_id_type_group,
-              #                           'artist_id_country_origin':artist_id_country_origin,
-              #                           'artist_country_origin':artist_country_origin,
-              #                           'artist_id_city_origin':artist_id_city_origin,
-              #                           'artist_city_origin':artist_city_origin,
-              #                           'artist_gender_sex':artist_gender_sex,
-              #                           'artist_popularity':artist_popularity,
-              #                           'artist_id_spotify':artist_id_spotify,
-              #                           'artist_followers':artist_followers,
-              #                           'artist_genre':artist_genre
-              #                          })
-
-
-              # try:
-                # myConnection = psycopg2.connect( host=hostname, user=username, password=password, dbname='stages',port=port )
-                # cur = conn.cursor()
-                # cur.execute("INSERT INTO public.stage_artist (column1, column2, column3 .....)",)
-                # myConnection.commit()
-                # myConnection.close()
-
-
-                # writer = pd.ExcelWriter(filename, engine='xlsxwriter')
-                # df_tracks.to_excel(writer,encoding='utf8')
-                # writer.save()
-                # print "Inserted!"
               
 
