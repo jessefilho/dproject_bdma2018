@@ -27,7 +27,7 @@ client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secr
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # Request MusicBrainz For artists using stage_artist
-querySelect = """ SELECT id_msbz,id_spotify, name_group FROM public.stage_artist limit 10; """
+querySelect = """ SELECT id_msbz,id_spotify, name_group FROM public.stage_artist ; """
 
 
 def doReturnArtists( conn ) :
