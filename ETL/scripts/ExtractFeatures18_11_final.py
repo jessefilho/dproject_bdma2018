@@ -21,7 +21,7 @@ secret = "543080531fce4f30be3da2c36782ace1"
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-query = """ SELECT artist_name, artist_id_msbz, artist_id_spotify, album_id, album_name FROM public.stage_album limit s; """
+query = """ SELECT artist_name, artist_id_msbz, artist_id_spotify, album_id, album_name FROM public.stage_album ; """
 
 queryInsert=""" INSERT INTO public.stage_track_features(
             artist_id_spotify, artist_id_msbz, artist_name, album_id, album_name, 
@@ -79,7 +79,6 @@ for i in range(0,len(album_lists)-1,1):
             track_populartiy=sp.track(t['id'])
             popularity =track_populartiy['popularity']
             for r in track_features:
-                print (r['danceability'])
                 doInsertTracks(artist_id_spotify, artist_id_msbz,artist_name, album_id, album_name,track_id,track_name,popularity,
                                date_popularity,r['acousticness'],r['danceability'],r['duration_ms'],r['energy'],r['instrumentalness'],
                                r['key'],r['liveness'],r['loudness'],r['mode'],r['speechiness'],r['tempo'],r['time_signature'],r['valence'])
