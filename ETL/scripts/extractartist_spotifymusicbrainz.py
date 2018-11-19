@@ -44,8 +44,8 @@ query = """SELECT distinct artist_table.name_group,
               FROM (SELECT musicbrainz.artist.name as name_group,* 
                 FROM musicbrainz.artist
                 INNER JOIN musicbrainz.artist_credit_name
-              ON musicbrainz.artist.id = musicbrainz.artist_credit_name.artist) as artist_table
-              INNER JOIN musicbrainz.gender as gender_table
+              ON musicbrainz.artist.id = musicbrainz.artist_credit_name.artist where musicbrainz.artist.type = 2) as artist_table
+              LEFT JOIN musicbrainz.gender as gender_table
               ON artist_table.gender = gender_table.id
               INNER JOIN (select musicbrainz.area.id as id_area, musicbrainz.area.name as countrycity_name, musicbrainz.area_type.name as countrycity_type
                     FROM musicbrainz.area
