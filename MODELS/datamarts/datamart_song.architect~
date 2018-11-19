@@ -20,7 +20,7 @@
   </data-source>
  </project-data-sources>
  <source-databases>
-  <database id="DB0" populated="true" UUID="9de028fd-b43a-47c0-bdab-acd395169baf" dbcs-ref="DS2" name="PlayPen Database" physicalName="datamart_song" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: FATAL: database &quot;datamart_song&quot; does not exist" >
+  <database id="DB0" populated="true" UUID="9de028fd-b43a-47c0-bdab-acd395169baf" dbcs-ref="DS2" name="PlayPen Database" physicalName="datamart_song" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: FATAL: database &quot;datamart_song&quot; does not exist" >
    <catalog id="CAT1" populated="true" UUID="3a1f48cd-00be-4850-be0e-92e35d3ebf2d" name="datamart_song" nativeTerm="database" physicalName="datamart_song" >
    </catalog>
    <relationships>
@@ -34,7 +34,7 @@
     <column id="COL4" populated="true" UUID="6269a226-a1c4-497a-bd7b-c54cdfa76ff1" autoIncrement="false" autoIncrementSequenceName="dim_artistgroup_New Column_seq" defaultValue="" name="dim_artistgroup" nullable="0" physicalName="dim_artistgroup" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL5" populated="true" UUID="d0240321-b991-4ee1-8529-334d2eb98c6f" autoIncrement="false" autoIncrementSequenceName="dim_releasedatesong_New Column_seq" defaultValue="" name="dim_release-date-song" nullable="0" physicalName="dim_release-date-song" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL5" populated="true" UUID="d0240321-b991-4ee1-8529-334d2eb98c6f" autoIncrement="false" autoIncrementSequenceName="dim_releasedatesong_New Column_seq" defaultValue="" name="dim_releasedatesong" nullable="0" physicalName="dim_releasedatesong" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL6" populated="true" UUID="6ed2042a-499d-49fc-b33d-bb404fb76978" autoIncrement="false" autoIncrementSequenceName="dim_genre_New Column_seq" defaultValue="" name="dim_genre" nullable="0" physicalName="dim_genre" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -108,7 +108,7 @@
     <folder id="FOLTAB34" populated="true" name="Indices" physicalName="Indices" type="4">
     <index id="IDX27" populated="true" UUID="4aa67f9e-2b78-4b9d-a133-05cf3e48d434" clustered="false" name="fct_song_pk" physicalName="fct_song_pk" primaryKeyIndex="true" unique="false" >
      <index-column id="IDC28" populated="true" UUID="b057e605-ca5b-43a3-975b-cfef16f828ea" ascendingOrDescending="UNSPECIFIED" column-ref="COL4" name="dim_artistgroup" physicalName="dim_artistgroup" />
-     <index-column id="IDC29" populated="true" UUID="3429f601-1e91-44f1-964d-d3e5fd62d068" ascendingOrDescending="UNSPECIFIED" column-ref="COL5" name="dim_release-date-song" physicalName="dim_release-date-song" />
+     <index-column id="IDC29" populated="true" UUID="3429f601-1e91-44f1-964d-d3e5fd62d068" ascendingOrDescending="UNSPECIFIED" column-ref="COL5" name="dim_releasedatesong" physicalName="dim_releasedatesong" />
      <index-column id="IDC30" populated="true" UUID="d6d28cfb-3201-48b2-bcb4-470e707a8723" ascendingOrDescending="UNSPECIFIED" column-ref="COL6" name="dim_genre" physicalName="dim_genre" />
      <index-column id="IDC31" populated="true" UUID="d2613b80-c764-4f2a-a0c2-91fe37303783" ascendingOrDescending="UNSPECIFIED" column-ref="COL7" name="dim_cover" physicalName="dim_cover" />
      <index-column id="IDC32" populated="true" UUID="0e685cc0-0e9f-4374-833e-9199acca71db" ascendingOrDescending="UNSPECIFIED" column-ref="COL8" name="dim_releaselocationsong" physicalName="dim_releaselocationsong" />
@@ -203,10 +203,10 @@
     </index>
    </folder>
   </table>
-  <table id="TAB58" populated="true" UUID="fa843591-4af5-4999-97f7-a72e7bdb9665" name="dim_release-date-song" objectType="TABLE" physicalName="dim_releasedatesong" >
+  <table id="TAB58" populated="true" UUID="fa843591-4af5-4999-97f7-a72e7bdb9665" name="dim_releasedatesong" objectType="TABLE" physicalName="dim_releasedatesong" >
    <remarks></remarks>
    <folder id="FOLTAB581" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL59" populated="true" UUID="059485e6-3a4a-427b-ba31-d196d25c5622" autoIncrement="true" autoIncrementSequenceName="dim_releasedatesong_dim_release-date-song_seq" defaultValue="" name="dim_release-date-song" nullable="0" physicalName="dim_release-date-song" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL59" populated="true" UUID="059485e6-3a4a-427b-ba31-d196d25c5622" autoIncrement="true" autoIncrementSequenceName="dim_releasedatesong_dim_releasedatesong_seq" defaultValue="" name="dim_releasedatesong" nullable="0" physicalName="dim_releasedatesong" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL60" populated="true" UUID="5a93c813-6775-4b2e-bb94-a0575d21ce28" autoIncrement="false" autoIncrementSequenceName="dim_releasedatesong_id_releasedatesong_seq" defaultValue="" name="id_releasedatesong" nullable="1" physicalName="id_releasedatesong" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -228,7 +228,7 @@
     </folder>
     <folder id="FOLTAB584" populated="true" name="Indices" physicalName="Indices" type="4">
     <index id="IDX64" populated="true" UUID="28819684-dfaf-4ba4-80dd-6ddfb14a46a3" clustered="false" name="dim_releasedatesong_pk" physicalName="dim_releasedatesong_pk" primaryKeyIndex="true" unique="false" >
-     <index-column id="IDC65" populated="true" UUID="ae1bce4d-6a51-4bde-b025-f9d1487179c5" ascendingOrDescending="UNSPECIFIED" column-ref="COL59" name="dim_release-date-song" physicalName="dim_release-date-song" />
+     <index-column id="IDC65" populated="true" UUID="ae1bce4d-6a51-4bde-b025-f9d1487179c5" ascendingOrDescending="UNSPECIFIED" column-ref="COL59" name="dim_releasedatesong" physicalName="dim_releasedatesong" />
     </index>
    </folder>
   </table>
@@ -426,7 +426,7 @@
  <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="datamart_song"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="1.0" viewportX="47" viewportY="185" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB3" x="841" y="558" bgColor="0xf6bcbc" fgColor="0x000000" rounded="true" dashed="false"/>
   <table-pane table-ref="TAB34" x="554" y="705" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB42" x="552" y="907" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
