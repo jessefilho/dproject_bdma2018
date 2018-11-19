@@ -40,16 +40,16 @@
   <table id="TAB3" populated="true" UUID="08cd3d05-042a-444f-a2b9-325e9c7dea72" name="fct_popularitysong" objectType="TABLE" physicalName="fct_popularitysong" >
    <remarks></remarks>
    <folder id="FOLTAB31" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL4" populated="true" UUID="4316c429-347e-402f-be7a-4e0cf7a44644" autoIncrement="false" autoIncrementSequenceName="dim_popularitydate_New Column_seq" defaultValue="" name="dim_popularitydate" nullable="0" physicalName="dim_popularitydate" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL4" populated="true" UUID="4316c429-347e-402f-be7a-4e0cf7a44644" autoIncrement="true" autoIncrementSequenceName="dim_popularitydate_seq" defaultValue="" name="dim_popularitydate" nullable="0" physicalName="dim_popularitydate" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL5" populated="true" UUID="579d7a35-944f-4972-b63a-ef22206dd6ea" autoIncrement="false" autoIncrementSequenceName="dim_song_New Column_seq" defaultValue="" name="dim_song" nullable="0" physicalName="dim_song" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL5" populated="true" UUID="579d7a35-944f-4972-b63a-ef22206dd6ea" autoIncrement="true" autoIncrementSequenceName="dim_song_seq" defaultValue="" name="dim_song" nullable="0" physicalName="dim_song" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL6" populated="true" UUID="2d786e89-d307-47c4-b94e-cb95dce6a072" autoIncrement="false" autoIncrementSequenceName="dim_genres_New Column_seq" defaultValue="" name="dim_genres" nullable="0" physicalName="dim_genres" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL6" populated="true" UUID="2d786e89-d307-47c4-b94e-cb95dce6a072" autoIncrement="true" autoIncrementSequenceName="dim_genres_seq" defaultValue="" name="dim_genres" nullable="0" physicalName="dim_genres" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL7" populated="true" UUID="19d835be-758e-4e9f-8fc2-b115c700c584" autoIncrement="false" autoIncrementSequenceName="dim_cover_New Column_seq" defaultValue="" name="dim_cover" nullable="0" physicalName="dim_cover" precision="0" primaryKeySeq="3" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL7" populated="true" UUID="19d835be-758e-4e9f-8fc2-b115c700c584" autoIncrement="true" autoIncrementSequenceName="dim_cover_seq" defaultValue="" name="dim_cover" nullable="0" physicalName="dim_cover" precision="0" primaryKeySeq="3" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL8" populated="true" UUID="0c89e6e9-fb0b-445f-bee3-fcb0c90b9bac" autoIncrement="false" autoIncrementSequenceName="fct_popularitysong_popularitysong_seq" defaultValue="" name="popularitysong" nullable="1" physicalName="popularitysong" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
@@ -190,7 +190,7 @@
   <table id="TAB50" populated="true" UUID="e8922b0c-2f4e-4071-a6a4-d8c394c601b3" name="dim_cover" objectType="TABLE" physicalName="dim_cover" >
    <remarks></remarks>
    <folder id="FOLTAB501" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL51" populated="true" UUID="858bc1e9-02f8-4ff8-a439-d9d430ed461b" autoIncrement="true" autoIncrementSequenceName="dim_cover_dim_cover_seq" defaultValue="" name="dim_cover" nullable="0" physicalName="dim_cover" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL51" populated="true" UUID="858bc1e9-02f8-4ff8-a439-d9d430ed461b" autoIncrement="true" autoIncrementSequenceName="dim_cover_dim_cover_seq" defaultValue="" name="dim_cover" nullable="0" physicalName="dim_cover" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL52" populated="true" UUID="bfa0557c-b649-4396-8f16-4b33cdc1e8bb" autoIncrement="false" autoIncrementSequenceName="dim_cover_id_cover_seq_1" defaultValue="" name="id_cover" nullable="1" physicalName="id_cover" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
