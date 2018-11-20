@@ -1,0 +1,4 @@
+SERVICE				USER				PASSWD						IP
+bi-server Pentaho	admin				pentaho_jfnf				http://10.195.25.10:54585/pentaho/Home
+postgresql			postgres			123							10.195.25.10:54587
+postgresql			userbkp				goma123						10.195.25.10:54587			

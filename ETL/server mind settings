@@ -92,3 +92,7 @@ https://sanenthusiast.com/change-default-image-container-location-docker/
 [Service]
 ExecStart=
 ExecStart=/usr/bin/dockerd --graph=/home/docker
+
+
+pg_dump -h host1 dbname | psql -h host2 dbname
+pg_dump -h 
