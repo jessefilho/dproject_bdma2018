@@ -1,0 +1,4 @@
+<Schema name="New Schema1">
+  <Cube name="Artists Popularity" caption="artists_popularity" visible="true" cache="true" enabled="true">
+  </Cube>
+</Schema>
