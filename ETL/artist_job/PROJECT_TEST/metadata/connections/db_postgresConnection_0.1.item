@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.relational="http:///orgomg/cwm/resource/relational.ecore">
+  <TalendMetadata:DatabaseConnection xmi:id="_QcCXsOquEei6gJTQ9_NaIQ" name="db_postgresConnection" id="_CEqpgOquEei6gJTQ9_NaIQ" label="db_postgresConnection" dataPackage="_rq12UPP5Eei45tY20CXdAA" DatabaseType="PostgreSQL" DriverClass="org.postgresql.Driver" URL="jdbc:postgresql://10.195.25.10:54587/dw" dbVersionString="PRIOR_TO_V9" Port="54587" Username="userbkp" Password="0jG/+vtmZag=" ServerName="10.195.25.10" DatasourceName="" FileFieldName="" SID="dw" SqlSynthax="" StringQuote="" NullChar="" DbmsId="postgres_id" ProductId="POSTGRESQL" AdditionalParams="" StandardSQL="true" SQLMode="false" UiSchema="datamarts_2">
+    <taggedValue xmi:id="_QcCXsequEei6gJTQ9_NaIQ" tag="Is Conn Need Reload" value="true"/>
+    <taggedValue xmi:id="_Qcg40OquEei6gJTQ9_NaIQ" tag="package filter" value=""/>
+    <taggedValue xmi:id="_Qcg40equEei6gJTQ9_NaIQ" tag="Status" value=""/>
+    <taggedValue xmi:id="_Qcg40uquEei6gJTQ9_NaIQ" tag="Version" value="0.1"/>
+    <taggedValue xmi:id="_Qcg40-quEei6gJTQ9_NaIQ" tag="Purpose" value=""/>
+    <taggedValue xmi:id="_Qcg41OquEei6gJTQ9_NaIQ" tag="Description" value=""/>
+    <taggedValue xmi:id="_Qcg41equEei6gJTQ9_NaIQ" tag="Author" value=""/>
+    <taggedValue xmi:id="_Qcg41uquEei6gJTQ9_NaIQ" tag="otherParameter"/>
+    <taggedValue xmi:id="_QgYFIOquEei6gJTQ9_NaIQ" tag="DB ProductName" value="PostgreSQL"/>
+    <taggedValue xmi:id="_QgYFIequEei6gJTQ9_NaIQ" tag="DB ProductVersion" value="9.5.10"/>
+    <taggedValue xmi:id="_QgYFIuquEei6gJTQ9_NaIQ" tag="DB IdentifierQuoteString" value="&quot;"/>
+    <parameters xmi:id="_QcCXsuquEei6gJTQ9_NaIQ" key="CONN_PARA_KEY_USERNAME" value="userbkp"/>
+    <parameters xmi:id="_fZsAUOs-Eei6gJTQ9_NaIQ" key="CONN_PARA_KEY_MAPRDB_TABLE_NS_MAPPING" value=""/>
+  </TalendMetadata:DatabaseConnection>
+  <orgomg.cwm.resource.relational:Catalog xmi:id="_rq12UPP5Eei45tY20CXdAA" name="dw" dataManager="_QcCXsOquEei6gJTQ9_NaIQ">
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_rq2dYPP5Eei45tY20CXdAA" name="datamarts_2"/>
+  </orgomg.cwm.resource.relational:Catalog>
+</xmi:XMI>
