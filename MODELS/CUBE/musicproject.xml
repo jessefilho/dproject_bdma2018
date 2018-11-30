@@ -1,0 +1,200 @@
+<Schema name="musicproject">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Dates (hierarchy)">
+    <Hierarchy visible="true" hasAll="true" primaryKey="sgk_popularitydate_popartist">
+      <Table name="dim_popularitydate_artist" schema="datamarts_2">
+      </Table>
+      <Level name="Year" visible="true" column="popularityyear" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+      <Level name="Month" visible="true" column="popularitymonth" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Types">
+    <Hierarchy name="type performancers" visible="true" hasAll="true" primaryKey="sgk_artistgroup_popartist">
+      <Table name="dim_artistgroup_popartist" schema="datamarts_2">
+      </Table>
+      <Level name="Type" visible="true" column="id_typegroup" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="typegroup">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Origins Artist">
+    <Hierarchy name="Locations" visible="true" hasAll="true" primaryKey="sgk_artistgroup_popartist">
+      <Table name="dim_artistgroup_popartist" schema="datamarts_2">
+      </Table>
+      <Level name="Country" visible="true" column="id_countryoriginartist" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="countryoriginartist">
+      </Level>
+      <Level name="City" visible="true" column="id_cityoriginartist" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="cityoriginartist">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Release Location">
+    <Hierarchy name="Locations" visible="true" hasAll="true" primaryKey="skg_releaselocationsong">
+      <Table name="dim_releaselocationsong" schema="datamarts_2">
+      </Table>
+      <Level name="Country" visible="true" column="releasecountrysong" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="City" visible="true" column="releasecitysong" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Date Release (hierarchy)" caption="Date Release (hierarchy)">
+    <Hierarchy visible="true" hasAll="true" primaryKey="skg_releasedatesong">
+      <Table name="dim_releasedatesong" schema="datamarts_2">
+      </Table>
+      <Level name="Year" visible="true" column="releaseyearsong" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+      <Level name="Month" visible="true" column="releasemonthsong" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Genres">
+    <Hierarchy visible="true" hasAll="true" primaryKey="skg_genre_song">
+      <Table name="dim_genre_song" schema="datamarts_2">
+      </Table>
+      <Level name="genre" visible="true" column="id_genre" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="genretype">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" name="Album Date Release (hierarchy)">
+    <Hierarchy visible="true" hasAll="true" primaryKey="skg_album_song">
+      <Table name="dim_album_song" schema="datamarts_2" alias="">
+      </Table>
+      <Level name="Album Release Year" visible="true" column="releaseyearalbum" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+      <Level name="Album Release Month" visible="true" column="releasemonthalbum" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" name="Album">
+    <Hierarchy visible="true" hasAll="true" primaryKey="skg_album_song">
+      <Table name="dim_album_song" schema="datamarts_2" alias="">
+      </Table>
+      <Level name="Album Name" visible="true" column="id_album" type="String" uniqueMembers="false" levelType="Regular" captionColumn="titlealbum">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Artist Popularity" caption="Artist Popularity" visible="true" description="show artist popularity" cache="true" enabled="true">
+    <Table name="fct_popularityartist" schema="datamarts_2">
+    </Table>
+    <DimensionUsage source="Dates (hierarchy)" name="Date Popularity (hierarchy)" visible="true" foreignKey="sgk_popularitydate_popartist" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Origins Artist" name="Origins" visible="true" foreignKey="sgk_artistgroup_popartist" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="sgk_artistgroup_popartist" highCardinality="false" name="Artists Groups">
+      <Hierarchy name="Name" visible="true" hasAll="true" primaryKey="sgk_artistgroup_popartist">
+        <Table name="dim_artistgroup_popartist" schema="datamarts_2">
+        </Table>
+        <Level name="Name" visible="true" column="id_artistgroup" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="artistgroup">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Types" name="Types" visible="true" foreignKey="sgk_artistgroup_popartist" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="TimeDimension" visible="true" foreignKey="sgk_popularitydate_popartist" highCardinality="false" name="Date (No Hierarchy)">
+      <Hierarchy name="Year" visible="true" hasAll="true" primaryKey="sgk_popularitydate_popartist">
+        <Table name="dim_popularitydate_artist" schema="datamarts_2">
+        </Table>
+        <Level name="Year" visible="true" column="popularityyear" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Month" visible="true" hasAll="true" primaryKey="sgk_popularitydate_popartist">
+        <Table name="dim_popularitydate_artist" schema="datamarts_2">
+        </Table>
+        <Level name="Month" visible="true" column="popularitymonth" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Max Popularity" column="popularityartist" datatype="Numeric" aggregator="max" visible="true">
+    </Measure>
+    <Measure name="Quantity artist" column="id_artistgroup" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="Min Popularity" column="popularityartist" datatype="Numeric" aggregator="min" visible="true">
+    </Measure>
+    <Measure name="Avg Popularity " column="popularityartist" datatype="Integer" aggregator="avg" caption="Avg Popularity" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="Song" visible="true" cache="true" enabled="true">
+    <Table name="fct_song" schema="datamarts_2">
+    </Table>
+    <DimensionUsage source="Release Location" name="Release Location" visible="true" foreignKey="skg_releaselocationsong" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Origins Artist" name="Artist Origins" visible="true" foreignKey="skg_artistgroup_song" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Types" name="Types" visible="true" foreignKey="skg_artistgroup_song" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="skg_artistgroup_song" highCardinality="false" name="Artists Groups">
+      <Hierarchy name="Name" visible="true" hasAll="true" primaryKey="skg_artistgroup_song">
+        <Table name="dim_artistgroup_song" schema="datamarts_2">
+        </Table>
+        <Level name="Name" visible="true" column="id_artistgroup" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="artistgroup">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Date Release (hierarchy)" name="Date Release (hierarchy)" caption="Date Release (hierarchy)" visible="true" foreignKey="skg_releasedatesong" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Genres" name="Genre" visible="true" foreignKey="skg_genre_song" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Album Date Release (hierarchy)" name="Album Date Release" visible="true" foreignKey="skg_album_song">
+    </DimensionUsage>
+    <DimensionUsage source="Album" name="Album" visible="true" foreignKey="skg_album_song">
+    </DimensionUsage>
+    <Measure name="Max accoustiness" column="accoustiness" datatype="Numeric" aggregator="max" caption="Max accoustiness" visible="true">
+    </Measure>
+    <Measure name="Min accoustiness" column="accoustiness" datatype="Numeric" aggregator="min" caption="Min accoustiness" visible="true">
+    </Measure>
+    <Measure name="Avg accoustiness" column="accoustiness" datatype="Numeric" aggregator="avg" caption="Avg accoustiness" visible="true">
+    </Measure>
+    <Measure name="Max tempo" column="tempo" datatype="Integer" aggregator="max" caption="Max tempo" visible="true">
+    </Measure>
+    <Measure name="Min tempo" column="tempo" datatype="Integer" aggregator="min" caption="Min tempo" visible="true">
+    </Measure>
+    <Measure name="Avg tempo" column="tempo" datatype="Integer" aggregator="avg" caption="Avg tempo" visible="true">
+    </Measure>
+    <Measure name="Max energy" column="energy" datatype="Numeric" aggregator="max" caption="Max energy" visible="true">
+    </Measure>
+    <Measure name="Min energy" column="energy" datatype="Numeric" aggregator="min" caption="Min energy" visible="true">
+    </Measure>
+    <Measure name="Avg energy" column="energy" datatype="Numeric" aggregator="avg" caption="Avg energy" visible="true">
+    </Measure>
+    <Measure name="Max danceability" column="danceability" datatype="Numeric" aggregator="max" caption="Max danceability" visible="true">
+    </Measure>
+    <Measure name="Min danceability" column="danceability" datatype="Numeric" aggregator="min" caption="Min danceability" visible="true">
+    </Measure>
+    <Measure name="Avg danceability" column="danceability" datatype="Numeric" aggregator="avg" caption="Avg danceability" visible="true">
+    </Measure>
+    <Measure name="Max speechiness" column="speechiness" datatype="Numeric" aggregator="max" caption="Max speechiness" visible="true">
+    </Measure>
+    <Measure name="Min speechiness" column="speechiness" datatype="Numeric" aggregator="min" caption="Min speechiness" visible="true">
+    </Measure>
+    <Measure name="Avg speechiness" column="speechiness" datatype="Numeric" aggregator="avg" caption="Avg speechiness" visible="true">
+    </Measure>
+    <Measure name="Max loudness" column="loudness" datatype="Numeric" aggregator="max" caption="Max loudness" visible="true">
+    </Measure>
+    <Measure name="Min loudness" column="loudness" datatype="Numeric" aggregator="min" caption="Min loudness" visible="true">
+    </Measure>
+    <Measure name="Avg loudness" column="loudness" datatype="Numeric" aggregator="avg" caption="Avg loudness" visible="true">
+    </Measure>
+    <Measure name="Max duration" column="duration" datatype="Numeric" aggregator="max" caption="Max duration" visible="true">
+    </Measure>
+    <Measure name="Min duration" column="duration" datatype="Numeric" aggregator="min" caption="Min duration" visible="true">
+    </Measure>
+    <Measure name="Avg duration" column="duration" datatype="Numeric" aggregator="avg" caption="Avg duration" visible="true">
+    </Measure>
+    <Measure name="Max valence" column="valence" datatype="Numeric" aggregator="max" caption="Max valence" visible="true">
+    </Measure>
+    <Measure name="Min valence" column="valence" datatype="Numeric" aggregator="min" caption="Min valence" visible="true">
+    </Measure>
+    <Measure name="Avg valence" column="valence" datatype="Numeric" aggregator="avg" caption="Avg valence" visible="true">
+    </Measure>
+    <Measure name="Max instrumentalness" column="instrumentalness" datatype="Numeric" aggregator="max" caption="Max instrumentalness" visible="true">
+    </Measure>
+    <Measure name="Min instrumentalness" column="instrumentalness" datatype="Numeric" aggregator="min" caption="Min instrumentalness" visible="true">
+    </Measure>
+    <Measure name="Avg instrumentalness" column="instrumentalness" datatype="Numeric" aggregator="avg" caption="Avg instrumentalness" visible="true">
+    </Measure>
+    <Measure name="Sum release covered" column="numberreleasedcover" datatype="Integer" aggregator="sum" caption="Sum release covered" visible="true">
+    </Measure>
+    <Measure name="Quantity song" column="titlesong" datatype="String" aggregator="count" caption="Quantity song" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
