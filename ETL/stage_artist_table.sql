@@ -89,7 +89,7 @@ ALTER SEQUENCE datamarts_2.dim_artistgroup_skg_artistgrou_seq  RESTART WITH 1;
 ALTER SEQUENCE datamarts_2.dim_releasedatesong_skg_releasedatesong_seq RESTART WITH 1;
 ALTER SEQUENCE datamarts_2.dim_releaselocationsong_skg_releaselocationsong_seq RESTART WITH 1;
 ALTER SEQUENCE datamarts_2.dim_album_skg_album_seq RESTART WITH 1;
-ALTER SEQUENCE datamarts_2.bridge_cover_fctsong_skg_cover_fctsong_seq RESTART WITH 1;
+ALTER SEQUENCE datamarts_2.bridge_cover_fctsong_skg_cover_fctsong_seq_1 RESTART WITH 1;
 
 
 
@@ -97,7 +97,7 @@ ALTER SEQUENCE datamarts_2.bridge_cover_fctsong_skg_cover_fctsong_seq RESTART WI
 
 
 
-SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'dw' AND pid <> pg_backend_pid()  AND state in ('idle');
+SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid()  AND state in ('idle');
 
 
 
@@ -198,17 +198,95 @@ where t.id=rt.tag and r.id=rt.release
 limit 100"
 
 
-SELECT *
-FROM fct_song
-RIGHT JOIN dim_album_song
+SELECT track_id,
+ artist_id_spotify as numberArtist, 
+ dim_artistgroup_song.skg_artistgroup_song, 
+ tempo, energy, danceability,speechiness, acousticness, loudness, duration_ms as duration, valence, instrumentalness, 
+ track_name as titlesong
+FROM datamarts_2.fct_song
+INNER JOIN datamarts_2.dim_album_song
 ON fct_song.id_album = dim_album_song.id_album
-RIGHT JOIN dim_releaselocationsong
+INNER JOIN datamarts_2.dim_releaselocationsong
 ON fct_song.id_releaselocationsong = dim_releaselocationsong.id_releaselocationsong
-RIGHT JOIN dim_artistgroup_song
-ON fct_song.id_artistgroup = dim_releaselocationsong.id_artistgroup
-RIGHT JOIN dim_releasedatesong
+INNER JOIN datamarts_2.dim_artistgroup_song
+ON fct_song.id_artistgroup = dim_artistgroup_song.id_artistgroup
+INNER JOIN datamarts_2.dim_releasedatesong
 ON fct_song.id_releasedatesong = dim_releasedatesong.id_releasedatesong
-RIGHT JOIN  dim_genre_song
+INNER JOIN  datamarts_2.dim_genre_song
 ON fct_song.id_genre = dim_genre_song.id_genre
-RIGHT JOIN bridge_cover_fctsong
+INNER JOIN datamarts_2.bridge_cover_fctsong
 ON fct_song.id_cover = bridge_cover_fctsong.id_cover
+RIGHT JOIN stages.stage_track_features_bkp
+ON stage_track_features_bkp.artist_id_spotify = dim_artistgroup_song.id_artistgroup
+
+
+MODELO
+
+SELECT track_id,
+ artist_id_spotify as numberArtist, 
+ dim_artistgroup_song.skg_artistgroup_song, 
+ track_name as titlesong
+FROM datamarts_2.fct_song
+INNER JOIN datamarts_2.dim_album_song
+ON fct_song.id_album = dim_album_song.id_album
+INNER JOIN datamarts_2.dim_artistgroup_song
+ON fct_song.id_artistgroup = dim_artistgroup_song.id_artistgroup
+INNER JOIN  datamarts_2.dim_genre_song
+ON fct_song.id_genre = dim_genre_song.id_genre
+RIGHT JOIN stages.stage_track_features_bkp
+ON stage_track_features_bkp.artist_id_spotify = dim_artistgroup_song.id_artistgroup
+
+
+SELECT 
+ artist_id_spotify as numberArtist,
+ tempo, energy, danceability,speechiness, acousticness, loudness, duration_ms as duration, valence, instrumentalness, 
+ track_name as titlesong,
+ dim_artistgroup_song.skg_artistgroup_song,
+ dim_releaselocationsong.skg_releaselocationsong,
+ bridge_cover_fctsong.skg_cover_fctsong,
+ dim_genre_song.skg_genre_song,
+ dim_album_song.skg_album_song
+
+
+
+FROM stages.stage_track_features_bkp
+INNER JOIN datamarts_2.dim_album_song
+ON stage_track_features_bkp.album_id = dim_album_song.id_album
+INNER JOIN datamarts_2.dim_artistgroup_song
+ON stage_track_features_bkp.artist_id_spotify = dim_artistgroup_song.id_artistgroup
+INNER JOIN datamarts_2.dim_genre_song
+ON stage_track_features_bkp.track_name = dim_genre_song.dim_genre_song
+
+
+INNER JOIN stages.stage_song
+ON stage_track_features_bkp.track_id = stage_song.id_song
+INNER JOIN datamarts_2.dim_releaselocationsong
+ON stage_song.id_country_name_release_song = dim_releaselocationsong.id_releaselocationsong
+
+
+
+
+
+INNER JOIN datamarts_2.dim_releasedatesong -- TALEND USAR TMAP COCANT DATES FROM STAGE SONG
+
+
+
+SELECT 
+ artist_id_spotify as numberArtist,
+ tempo, energy, danceability,speechiness, acousticness, loudness, duration_ms as duration, valence, instrumentalness, 
+ track_name as titlesong
+
+FROM stages.stage_track_features_bkp
+INNER JOIN stages.stage_song
+ON stage_track_features_bkp.track_id = stage_song.id_song
+
+
+ALTER SEQUENCE datamarts_2.bridge_cover_fctsong_skg_cover_fctsong_seq_1 RESTART WITH 1;
+ALTER SEQUENCE datamarts_2.dim_cover_fctsong_skg_cover_fctsong_seq RESTART WITH 1;
+
+
+
+select * 
+from datamarts_2.bridge_cover_fctsong
+inner join datamarts_2.dim_cover_fctsong
+on id_cover=id_cover
